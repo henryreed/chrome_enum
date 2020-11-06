@@ -1,8 +1,9 @@
 # Chrome Enum
-Decrypts and dumps Google Chrome cookies and passwords generated since Google Chrome version 80 in Microsoft Windows.
+Decrypts and dumps Google Chrome cookies and passwords in Microsoft Windows.
 ## Features
 * Does not require administrator privileges
 * Does not require Windows password
+* Supports both crypto methods used before and after Chrome V80
 * Program will not fail as a result of a database lock by Chrome; i.e., you may launch this program while Chrome is running
 * Data is in a list of lists, allowing for easy integration with other software as a library
 ## Installation
@@ -22,6 +23,5 @@ pip install -r requirements.txt
 python chrome_enum.py
 ```
 ### Planned features
-* Support for legacy encryption formats
 * Support for Mac OS
 * Support for Linux
