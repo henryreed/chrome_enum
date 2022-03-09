@@ -1,4 +1,6 @@
 # Chrome Enum
+"Anyone who stores a password in their browser deserves what they get." --A dear friend of mine.
+
 Decrypts and dumps Google Chrome cookies and passwords in Microsoft Windows.
 ## Features
 * Does not require administrator privileges
