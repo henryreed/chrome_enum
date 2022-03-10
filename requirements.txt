@@ -1,2 +1,2 @@
-pycryptodomex==3.9.9
-pywin32==228
+pycryptodomex==3.14.1
+pywin32==303
