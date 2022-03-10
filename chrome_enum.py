@@ -257,7 +257,7 @@ class ChromeEnumWindows:
     def __individual_password(self, database_file, key) -> list:
         """Extracts and decrypts passwords saved in Google Chrome.
 
-        :param database_file: Absolute location of a cookie SQLite 3 database file
+        :param database_file: Absolute location of a password SQLite 3 database file
         :param key: Key for AES-encrypted entries
         :return: A list of lists of password entries. Each entry contains the URL, username and password, respectively.
         """
