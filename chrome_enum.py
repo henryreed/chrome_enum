@@ -149,7 +149,7 @@ class ChromeEnumWindows:
 
     def __init__(self):
         self.name = 'Chrome Enum for Windows'
-        self.version = 'V1.2'
+        self.version = 'V1.2.1'
         if system() != "Windows":
             raise NotImplementedError(system() + " is not supported in this class.")
         base_dir_list: list = self.__get_base_dir()
