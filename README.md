@@ -11,6 +11,7 @@ Decrypts and dumps Chrome-based browser cookies and passwords in Microsoft Windo
 * Data is in a list of lists, allowing for easy integration with other software as a library
 
 ## Supported Browsers
+* Opera
 * Brave Browser
 * Chrome-based version of Microsoft Edge
 * Google Chrome
