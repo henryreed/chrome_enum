@@ -13,7 +13,7 @@ Decrypts and dumps Chrome-based browser cookies and passwords in Microsoft Windo
 ## Supported Browsers
 * Opera
 * Brave Browser
-* Chrome-based version of Microsoft Edge
+* Chrome-based version of Microsoft Edge (currently, unable to decrypt cookies, but passwords work)
 * Google Chrome
 
 ## Installation
@@ -35,5 +35,6 @@ PS > python chrome_enum.py
 ```
 ### Planned features
 * Windows support for other Chrome-based browsers
+* Fix Microsoft Edge support
 * Support for Linux
 * Support for macOS
