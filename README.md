@@ -1,3 +1,7 @@
+# Deprecated
+
+Use the much-better DumpBrowserSecrets by the MalDev Academy community [here](https://github.com/Maldev-Academy/DumpBrowserSecrets/)
+
 # Chrome Enum
 "Anyone who stores a password in their browser deserves what they get." --A dear friend of mine.
 
